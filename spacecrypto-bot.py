@@ -60,9 +60,19 @@ str_in = """
 
     Loading...
         
-    >> Ctrl + C => Pause
-    
-    
+
+            Ctrl + C => Pause
+
+
+
+    ----------------------------------------------------------------
+    Source from Brazil -> Optimal script & EngSub by Shinee:
+    https://github.com/Shinee09/auto-spg
+
+    ----------------------------------------------------------------
+    Origin source (Brazil language): 
+    https://github.com/cryptotwinsbr/spacecrypto-bot
+
     """
 
 def addRandomness(n, randomn_factor_size=None):
@@ -371,12 +381,12 @@ def screen_close():
     global cont_boss
     confirm_click = False
     if clickBtn(images['close'],timeout=1):
-        dbg.console('Found close-button error !', 'ERROR', 'ambos')        
+        dbg.console('Found close-button', 'ERROR', 'ambos')        
         cont_boss = 1
         confirm_click = True
         refreshPage()
     if clickBtn(images['bt-ok'], timeout=1):
-        dbg.console('Found ok-button error !', 'ERROR', 'ambos')        
+        dbg.console('Found OK-button', 'ERROR', 'ambos')        
         cont_boss = 1
         confirm_click = True
     return confirm_click
@@ -430,7 +440,7 @@ def refreshSpaceships(qtd):
     
     if ot['set_filter_max_ammo'] == True and len(positions(images['fight-boss'], th['hard']))  > 0:
         if len(positions(images['max-ammo'], th['hard'])) == 0:
-            dbg.console('Setando max ammo', 'INFO', 'ambos')
+            dbg.console('Sort by max ammo', 'INFO', 'ambos')
             if clickBtn(images['min-ammo'], timeout=1) or clickBtn(images['newest'], timeout=1):        
                 time.sleep(0.2)
                 clickBtn(images['max-ammo-sel'], timeout=4, threshold = th['hard'])
@@ -515,7 +525,7 @@ def zero_ships():
                 has_timed_out = time.time()-start > 1
                 continue
             elif(len(matches)>0):
-                dbg.console("Zero ships, return spaceships lobby", 'INFO', 'ambos')
+                dbg.console("Zero ship, return spaceship lobby", 'INFO', 'ambos')
                 time.sleep(1)
                 clickBtn(images['ship'],timeout = 5, threshold = th['commom'])
                 return True
@@ -538,8 +548,8 @@ def main():
     print(str_in)        
     time.sleep(5)
     dbg.console('Auto SpaceCrypto version: ' + str(version_script), 'INFO', 'ambos')
-    dbg.console('Total Ships: ' + str(st['empty_qtd_spaceships']), 'INFO', 'ambos')
-    dbg.console('Ships in battle: ' + str(st['qtd_send_spaceships']), 'INFO', 'ambos')
+    dbg.console('Total Ship: ' + str(st['empty_qtd_spaceships']), 'INFO', 'ambos')
+    dbg.console('Ready Ship: ' + str(st['qtd_send_spaceships']), 'INFO', 'ambos')
     dbg.console('Boss Surrender: ' + str(st['boss_surrender']), 'INFO', 'ambos')
     time_start = {
     "close" : 0,
@@ -574,7 +584,7 @@ def main():
             if screen_close():
                 action_found = True
         if action_found == False:
-            dbg.console('Hổng thấy gì để làm !', 'Chán', 'ambos')
+            dbg.console('Action not found', 'WARNING', 'ambos')
             if (actual_time - time_start['refresh_page']) > time_to_check['refresh_page']:
                 dbg.console('Reload Page', 'WARNING', 'ambos')
                 time_start['refresh_page'] = actual_time      
